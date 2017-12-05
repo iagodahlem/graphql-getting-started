@@ -4,9 +4,15 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "start": "node ./index"
+    "start": "node ./index",
+    "dev": "nodemon /.index"
   },
   "dependencies": {
+    "express": "^4.16.2",
+    "express-graphql": "^0.6.11",
     "graphql": "^0.11.7"
+  },
+  "devDependencies": {
+    "nodemon": "^1.12.5"
   }
 }
