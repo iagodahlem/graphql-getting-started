@@ -4,31 +4,17 @@ Studying GraphQL.
 
 ## Install
 
-Simple run:
-
-```sh
-yarn
-```
+Simple run `yarn`.
 
 ## Running
 
-For development run:
+For development run `yarn dev`, then visit [localhost:3000/graphql](http://localhost:3000/graphql).
 
-```sh
-yarn dev
-```
-
-Or for production:
-
-```sh
-yarn start
-```
-
-Then visit [localhost:3000/graphql](http://localhost:3000/graphql)
+Or for productoin run `yarn start`.
 
 ## Queries
 
-Get video by id:
+#### Get video by id
 
 ```js
 {
@@ -41,7 +27,7 @@ Get video by id:
 }
 ```
 
-Get videos:
+#### Get videos
 
 ```js
 {
@@ -56,7 +42,7 @@ Get videos:
 
 ## Mutations
 
-Create video:
+#### Create video
 
 ```js
 mutation M {
