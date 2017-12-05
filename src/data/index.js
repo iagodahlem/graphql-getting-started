@@ -14,7 +14,7 @@ const videoB = {
 
 const videos = [videoA, videoB]
 
-const getVideoById = (id) => new Promise((resolve) => {
+const getVideoById = (id) => new Promise(resolve => {
   const video = videos.find(video => {
     return video.id === id
   })
@@ -22,4 +22,7 @@ const getVideoById = (id) => new Promise((resolve) => {
   resolve(video)
 })
 
+const getVideos = () => new Promise(resolve => resolve(videos))
+
 module.exports.getVideoById = getVideoById
+module.exports.getVideos = getVideos
