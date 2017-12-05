@@ -26,6 +26,51 @@ yarn start
 
 Then visit [localhost:3000/graphql](http://localhost:3000/graphql)
 
+## Queries
+
+Get video by id:
+
+```js
+{
+  video(id: "a") {
+    id
+    title
+    duration
+    released
+  }
+}
+```
+
+Get videos:
+
+```js
+{
+  videos {
+    id
+    title
+    duration
+    released
+  }
+}
+```
+
+## Mutations
+
+Create video:
+
+```js
+mutation M {
+  createVideo(video: {
+    title: "Foo Video"
+    duration: 400
+    released: false
+  }) {
+    id
+    title
+  }
+}
+```
+
 ## Contributing
 
 1. Fork it!
