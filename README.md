@@ -1,18 +1,30 @@
 # graphql-getting-started
 
-> TODO: Write a project description
-
-## Requirements
-
-> TODO: Describe the requirements
+Studying GraphQL.
 
 ## Install
 
-> TODO: Describe the installation process
+Simple run:
 
-## Usage
+```sh
+yarn
+```
 
-> TODO: Write usage instructions
+## Running
+
+For development run:
+
+```sh
+yarn dev
+```
+
+Or for production:
+
+```sh
+yarn start
+```
+
+Then visit [localhost:3000/graphql](http://localhost:3000/graphql)
 
 ## Contributing
 
