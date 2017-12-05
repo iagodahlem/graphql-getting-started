@@ -10,7 +10,11 @@ const {
   GraphQLInt,
   GraphQLBoolean,
 } = require('graphql')
-const { getVideoById, getVideos } = require('./src/data')
+const {
+  getVideoById,
+  getVideos,
+  createVideo,
+} = require('./src/data')
 
 const app = express()
 
@@ -30,18 +34,18 @@ const videoType = new GraphQLObjectType({
     },
     duration: {
       type: GraphQLInt,
-      description: 'The duration of the video in seconds.'
+      description: 'The duration of the video (in seconds).'
     },
-    watched: {
+    released: {
       type: GraphQLBoolean,
-      description: 'Whether or not a viewer has watched the video.'
+      description: 'Whether or not the video has been released.'
     },
   },
 })
 
 const queryType = new GraphQLObjectType({
-  name: 'QueryType',
-  description: 'The root query type',
+  name: 'Query',
+  description: 'The root Query type.',
   fields: {
     videos: {
       type: new GraphQLList(videoType),
@@ -55,13 +59,43 @@ const queryType = new GraphQLObjectType({
           description: 'The ID of the video.'
         },
       },
-      resolve: (_, { id }) => getVideoById(id),
+      resolve: (_, { id }) => {
+        return getVideoById(id)
+      },
+    },
+  },
+})
+
+const mutationType = new GraphQLObjectType({
+  name: 'Mutation',
+  description: 'The root Mutation type.',
+  fields: {
+    createVideo: {
+      type: videoType,
+      args: {
+        title: {
+          type: new GraphQLNonNull(GraphQLString),
+          description: 'The title of the video.'
+        },
+        duration: {
+          type: new GraphQLNonNull(GraphQLInt),
+          description: 'The duration of the video (in seconds).'
+        },
+        released: {
+          type: new GraphQLNonNull(GraphQLBoolean),
+          description: 'Whether or not the video has been released.'
+        },
+      },
+      resolve: (_, args) => {
+        return createVideo(args)
+      },
     },
   },
 })
 
 const schema = new GraphQLSchema({
   query: queryType,
+  mutation: mutationType,
 })
 
 app.use('/graphql', graphqlHTTP({

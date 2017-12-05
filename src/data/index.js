@@ -24,5 +24,19 @@ const getVideoById = (id) => new Promise(resolve => {
 
 const getVideos = () => new Promise(resolve => resolve(videos))
 
+const createVideo = ({ title, duration, released }) => {
+  const video = {
+    id: (new Buffer(title, 'utf8')).toString('base64'),
+    title,
+    duration,
+    released,
+  }
+
+  videos.push(video)
+
+  return video
+}
+
 module.exports.getVideoById = getVideoById
 module.exports.getVideos = getVideos
+module.exports.createVideo = createVideo
