@@ -3,7 +3,7 @@ const {
   GraphQLNonNull,
   GraphQLID,
 } = require('graphql')
-const { videoType } = require('../')
+const videoType = require('../types/videoType')
 
 const nodeInterface = new GraphQLInterfaceType({
   name: 'Node',
