@@ -17,6 +17,8 @@ const {
   createVideo,
 } = require('./src/data')
 
+const nodeInterface = require('./src/node')
+
 const app = express()
 
 const PORT = process.env.PORT || 3000
@@ -26,7 +28,7 @@ const videoType = new GraphQLObjectType({
   description: 'A video',
   fields: {
     id: {
-      type: GraphQLID,
+      type: new GraphQLNonNull(GraphQLID),
       description: 'The ID of the video.'
     },
     title: {
@@ -42,7 +44,10 @@ const videoType = new GraphQLObjectType({
       description: 'Whether or not the video has been released.'
     },
   },
+  interfaces: [nodeInterface],
 })
+
+exports.videoType = videoType
 
 const queryType = new GraphQLObjectType({
   name: 'Query',
