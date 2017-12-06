@@ -19,9 +19,9 @@ const {
 
 const nodeInterface = require('./src/node')
 
-const app = express()
+const routes = require('./src/routes')
 
-const PORT = process.env.PORT || 3000
+const app = express()
 
 const videoType = new GraphQLObjectType({
   name: 'Video',
@@ -113,13 +113,22 @@ const schema = new GraphQLSchema({
   mutation: mutationType,
 })
 
+app.use('/', routes)
+
 app.use('/graphql', graphqlHTTP({
   schema,
   graphiql: true,
 }))
 
-app.get('/', (req, res) => res.send('Server is up.'))
-
-app.listen(PORT, () => {
-  console.log(`Server is up and running at localhost://${PORT}`)
+app.use((req, res, next) => {
+  const err = new Error('Not Found')
+  err.status = 404
+  next(err)
 })
+
+app.use((err, req, res, next) => {
+  res.status(err.status || 500)
+  res.json('error')
+})
+
+module.exports = app

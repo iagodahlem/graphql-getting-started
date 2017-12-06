@@ -1,0 +1,13 @@
+#!/usr/bin/env node
+
+const http = require('http')
+const app = require('../')
+
+const PORT = process.env.PORT || 3000
+const server = http.createServer(app)
+
+app.set('port', PORT)
+server.listen(PORT)
+server.on('listening', () => {
+  console.log(`Server is up and running at localhost://${PORT}`)
+})
